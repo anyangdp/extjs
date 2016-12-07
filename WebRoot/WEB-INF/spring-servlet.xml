@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                            http://www.springframework.org/schema/mvc
+                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+       <!--启用注解-->
+       <context:annotation-config />
+
+       <!--扫描包-->
+       <context:component-scan base-package="com.sanss.controller"/>
+
+
+       <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+       <!--视图配置-->
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix" value="/" />
+              <property name="suffix" value=".jsp"/>
+              <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+       </bean>
+
+       <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+       <context:property-placeholder location="classpath*:*.properties" />
+
+       <!-- 获取数据源
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName"><value>${jdbc.driver}<alue></property>
+        <property name="url"><value>${jdbc.url}<alue></property>
+        <property name="username"><value>${jdbc.username}</value></property>
+        <property name="password"><value>${jdbc.password}<alue></property>
+    </bean> -->
+
+       <!--
+        拦截为/  添加配置访问静态文件
+        拦截为*.do 用配置
+        拦截为/* 错误的 进入到action  转发到jsp时会报404
+       -->
+       <!--加载静态资源文件-->
+      <!-- <mvc:resources mapping="/spring/js/**" location="/spring/js/***"/>
+       <mvc:resources mapping="/spring/img/**" location="/spring/js/**"/>
+       <mvc:resources mapping="/spring/css/**" location="/spring/js/**"/>
+       <mvc:default-servlet-handler />-->
+
+
+
+</beans>
